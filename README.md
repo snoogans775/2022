@@ -1,2 +1,5 @@
 # Advent of Code 2022
-A little late to the event, but enjoying a chance to practice mocha testing nad typescript!
+Node.js and Typescript solutions for Advent of Code 2022
+## Development
+This repo uses mocha for testing.
+Ensure that you have run ```tsc --build``` before any tests.
