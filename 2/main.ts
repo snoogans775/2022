@@ -13,9 +13,6 @@ function parse(commands: string): Array<Function> {
             const pair = command.split(' ');
             return createCommand(pair[0], Number.parseInt(pair[1]))
         })
-    // mapping to function with value in closure would be very cool
-    // but I'm having a brainfart right now because it's very late
-    // .map((pair: Array<string>) => commandMethods[pair[0]] );
 
     return parsedCommands;
 }
