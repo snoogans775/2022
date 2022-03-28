@@ -1,8 +1,5 @@
 function parse(commands: string): Array<Function> {
     function createCommand(directive: string, value: number) {
-        // "forward": "position",
-        // "down": (depth: number, val: number) => depth + val,
-        // "up": (depth: number, val: number) => depth - val
         return function(state: {position: number, depth: number}) {
             if(directive === 'forward') state.position += value;
             if(directive === 'up') state.depth -= value;
