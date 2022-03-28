@@ -10,8 +10,6 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-var data = fetch('https://adventofcode.com/2021/day/1/input');
-console.log(data);
 // const array: Array<number> = parseWindows(process.argv[2]);
 // console.log(array);
 function parseIncrements(string) {

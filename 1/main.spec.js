@@ -1,5 +1,5 @@
 const assert = require('assert')
-const fetch = require('axios')
+const fs = require('fs')
 const { countIncrements, computeWindows, parseWindows } = require('./main.js')
 
 describe('Day One', () => {
@@ -19,20 +19,14 @@ describe('Day One', () => {
         })
     })
     describe('Part 2', () => {
-        const input = `199  A      
-        200  A B    
-        208  A B C  
-        210    B C D
-        200  E   C D
-        207  E F   D
-        240  E F G  
-        269    F G H
-        260      G H
-        263        H`;
-        it('should parse a list of increments by a set of windows', async function() {
-            const data =fetch('https://adventofcode.com/2021/day/1/input')
-                console.log(response)
-                return assert.ok(response)
+        let input = '';
+        fs.readFile('./1/part2input.txt', 'UTF-8', (err, data) => {
+            if(err) throw new Error(err);
+            input = data;
+        })
+        it('should parse a list of increments by a set of windows', () => {
+           const parsed = parseWindows(input);
+           return assert.equal(countIncrements(parsed), 5);
         })
     })
 })
