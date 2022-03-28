@@ -1,4 +1,4 @@
-# Advent of Code 2022
+# Advent of Code 2021
 Node.js and Typescript solutions for Advent of Code 2022
 ## Development
 This repo uses mocha for testing.
