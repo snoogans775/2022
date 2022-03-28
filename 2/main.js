@@ -1,38 +1,40 @@
 "use strict";
-var input = process.argv[2];
-var commands = parse(input);
-var result = execute(commands);
-console.log(result);
 function parse(commands) {
-    var commandMethods = {
-        "forward": function (position, val) { return position + val; },
-        "down": function (depth, val) { return depth + val; },
-        "up": function (depth, val) { return depth - val; }
-    };
+    function createCommand(directive, value) {
+        // "forward": "position",
+        // "down": (depth: number, val: number) => depth + val,
+        // "up": (depth: number, val: number) => depth - val
+        return function (state) {
+            if (directive === 'forward')
+                state.position += value;
+            if (directive === 'up')
+                state.depth -= value;
+            if (directive === 'down')
+                state.depth += value;
+            return state;
+        };
+    }
     var parsedCommands = commands
         .split('\n')
-        .map(function (command) { return command.split(' '); });
+        .map(function (command) {
+        var pair = command.split(' ');
+        return createCommand(pair[0], Number.parseInt(pair[1]));
+    });
     // mapping to function with value in closure would be very cool
     // but I'm having a brainfart right now because it's very late
     // .map((pair: Array<string>) => commandMethods[pair[0]] );
     return parsedCommands;
 }
 function execute(commands) {
-    var depth = 0;
-    var position = 0;
+    var state = {
+        depth: 0,
+        position: 0
+    };
     for (var _i = 0, commands_1 = commands; _i < commands_1.length; _i++) {
         var command = commands_1[_i];
-        //whoops! should have made the state an object...
-        if (command[0] === 'forward') {
-            position += Number.parseInt(command[1]);
-        }
-        if (command[0] === 'down') {
-            depth += Number.parseInt(command[1]);
-        }
-        if (command[0] === 'up') {
-            depth -= Number.parseInt(command[1]);
-        }
+        var newState = command(state);
+        Object.assign(state, newState);
     }
-    return depth * position;
+    return state.depth * state.position;
 }
 module.exports = { parse: parse, execute: execute };
