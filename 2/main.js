@@ -1,9 +1,6 @@
 "use strict";
 function parse(commands) {
     function createCommand(directive, value) {
-        // "forward": "position",
-        // "down": (depth: number, val: number) => depth + val,
-        // "up": (depth: number, val: number) => depth - val
         return function (state) {
             if (directive === 'forward')
                 state.position += value;
@@ -20,9 +17,6 @@ function parse(commands) {
         var pair = command.split(' ');
         return createCommand(pair[0], Number.parseInt(pair[1]));
     });
-    // mapping to function with value in closure would be very cool
-    // but I'm having a brainfart right now because it's very late
-    // .map((pair: Array<string>) => commandMethods[pair[0]] );
     return parsedCommands;
 }
 function execute(commands) {
