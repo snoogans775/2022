@@ -37,7 +37,6 @@ function parseInput(input) {
             return fillVerticalLine(line);
         if (line[0].y === line[1].y)
             return fillHorizontalLine(line);
-        throw new Error("Non-orthogonal Line Found!");
         return line;
         function fillVerticalLine(line) {
             // find north point of vertical line

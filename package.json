@@ -1,9 +1,8 @@
 {
   "scripts": {
-    "test": "tsc --build && mocha **/*.spec.js"
+    "test": "tsc --build && mocha 6/*.spec.js"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "mocha": "^9.2.2",
     "@types/node": "^17.0.23"
